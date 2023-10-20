@@ -26,11 +26,11 @@ link rotR (Tree t, link h) {
   link x = h->l;
   h->l = x->r;
   x->r = h;
-
-  // Recalcular a altura dos nós
+  
+// Recalcular a altura dos n�s
   h->height = 1 + max(height(h->l), height(h->r));
   x->height = 1 + max(height(x->l), height(x->r));
-
+  
   return x;
 }
 
@@ -38,11 +38,11 @@ link rotL (Tree t, link h) {
   link x = h->r;
   h->r = x->l;
   x->l = h;
-
-  // Recalcular a altura dos nós
+  
+    // Recalcular a altura dos n�s
   h->height = 1 + max(height(h->l), height(h->r));
   x->height = 1 + max(height(x->l), height(x->r));
-
+  
   return x;
 }
 
@@ -89,11 +89,11 @@ link insertR (Tree t, link h, link n) {
   return h;
 }
 
-link insert(Tree t, int item) {
-  if (t->head == t->z) {
-    return (t->head = novoNo(item, t->z, t->z));
+link insert (Tree t, int item){
+  if(t->head == t->z) {
+    return (t->head =novoNo(item, t->z, t->z));
   }
-  t->head = insertR(t, t->head, novoNo(item, t->z, t->z));
+  t->head = AVLinsert(t, t->head, novoNo(item, t->z, t->z));
   return t->head;
 }
 
@@ -164,6 +164,14 @@ void imprimeFromNode(Tree a, link h, char *s) {
   printf("}\n");
 }
 
+link insert(Tree t, int item) {
+  if (t->head == t->z) {
+    return (t->head = novoNo(item, t->z, t->z));
+  }
+  t->head = insertR(t, t->head, novoNo(item, t->z, t->z));
+  return t->head;
+}
+
 link insertR(Tree t, link h, link n) {
   if (h == t->z) {
     n->height = 0; // Novo nó, altura 0
@@ -200,7 +208,5 @@ link insertR(Tree t, link h, link n) {
 
   return h;
 }
-
-
 
 
